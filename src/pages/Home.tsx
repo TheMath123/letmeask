@@ -1,24 +1,28 @@
+//React e hooks
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
-import { auth, firebase } from '../services/firebase';
+//Componentes externos
+import { Button } from '../components/Button';
 
+//Imagens
 import illustrationsImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 import googleIconImg from '../assets/images/google-icon.svg';
 
+//CSS
 import '../styles/auth.scss';
-import { Button } from '../components/Button';
 
+//Componente
 export function Home() {
   const history = useHistory()
+  const { user, singInWithGoogle } = useAuth()
 
   //Autentificação do usuário, para criar nova sala
   async function handlerCreateRoom() {
-    const provider = new firebase.auth.GoogleAuthProvider()
-
-    const result = await auth.signInWithPopup(provider)
-
-    console.log(result)
+    if(!user){
+      await singInWithGoogle()
+    }
 
     history.push('/rooms/new') //DIrecionar o usuário para criar nova sala
   }
