@@ -1,7 +1,39 @@
+//Componentes externos
+import { Button } from '../components/Button';
+
+//Imagem
+import logoImg from '../assets/images/logo.svg';
+
+//CSS
+import '../styles/room.scss';
 
 //Componente
 export function Room(){
   return (
-    <div>ROOM</div>
+    <div id="page-room">
+      <header>
+        <div className="content">
+          <img src={logoImg} alt="Letmeask" />
+          <div>codigo</div>
+        </div>
+      </header>
+
+      <main>
+        <div className="room_title">
+          <h1>Sala React</h1>
+          <span>4 perguntas</span>
+        </div>
+
+        <form>
+          <textarea
+            placeholder="O que você quer perguntar?"
+          />
+          <div className="form-footer">
+            <span>Para enviar uma pergunta, <button>faça seu login.</button></span>
+            <Button type="submit">Enviar pergunta</Button>
+          </div>
+        </form>
+      </main>
+    </div>
   )
 }
