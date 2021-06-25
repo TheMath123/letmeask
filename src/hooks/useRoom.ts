@@ -1,10 +1,24 @@
-//React
+//React e Hook externos
 import { useEffect, useState } from "react"
+import { useAuth } from "./useAuth";
 
 //Database
 import { database } from '../services/firebase';
 
 //Tipos
+type FirebaseQuestions = Record<string, {
+  author: {
+    name: string;
+    avatar: string;
+  }
+  content: string;
+  isHighlighted: boolean,
+  isAnswered: boolean,
+  likes: Record<string, {
+    authorId: string,
+  }>,
+}>
+
 type QuestionsType = {
   id: string,
   author: {
@@ -14,20 +28,13 @@ type QuestionsType = {
   content: string;
   isHighlighted: boolean,
   isAnswered: boolean,
+  likeCount: number,
+  likeId: string | undefined,
 }
-
-type FirebaseQuestions = Record<string, {
-  author: {
-    name: string;
-    avatar: string;
-  }
-  content: string;
-  isHighlighted: boolean,
-  isAnswered: boolean,
-}>
 
 //Hook
 export function useRoom(roomID: string){
+  const { user } = useAuth()
   const [ questions, setQuestions ] = useState<QuestionsType[]>([])
   const [ title, setTitle ] = useState('')
 
@@ -45,13 +52,19 @@ export function useRoom(roomID: string){
           author: value.author,
           isHighlighted: value.isHighlighted,
           isAnswered: value.isAnswered,
+          likeCount: Object.values(value.likes ?? {}).length,
+          likeId: Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0],
         }
       })
 
       setTitle(databaseRoom.title)
       setQuestions(parseQuestions)
     })
-  },[roomID])
+
+    return () => {
+      roomRef.off('value')
+    }
+  },[roomID, user?.id])
 
   return { questions, title };
 }

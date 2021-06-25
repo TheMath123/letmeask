@@ -5,7 +5,7 @@ import { useAuth } from '../../hooks/useAuth';
 
 //Componentes externos
 import { Button } from '../../components/Button';
-
+import toast, { Toaster } from 'react-hot-toast';
 
 //Database
 import { database } from '../../services/firebase';
@@ -44,7 +44,12 @@ export function Home() {
     const roomRef = await database.ref(`/rooms/${roomCode}`).get()
 
     if(!roomRef.exists()) {
-      alert('Room does not exists.')
+      toast.error('Room does not exists.')
+      return;
+    }
+    
+    if(roomRef.val().endedAt){
+      toast.error('Room already closed.')
       return;
     }
 
@@ -57,6 +62,11 @@ export function Home() {
         <img src={illustrationsImg} alt="Ilustração mensagens" />
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          toastOptions={{ duration: 1000 }}
+        />
       </aside>
       
       <main>
