@@ -1,24 +1,24 @@
 //React e hooks
 import { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 //Componentes externos
-import { Button } from '../components/Button';
+import { Button } from '../../components/Button';
 
 
 //Database
-import { database } from '../services/firebase';
+import { database } from '../../services/firebase';
 
 //Imagens
-import illustrationsImg from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg';
-import googleIconImg from '../assets/images/google-icon.svg';
+import illustrationsImg from '../../assets/images/illustration.svg';
+import logoImg from '../../assets/images/logo.svg';
+import googleIconImg from '../../assets/images/google-icon.svg';
 
 //CSS
-import '../styles/auth.scss';
+import '../../styles/auth.scss';
 
-//Componente
+//Page
 export function Home() {
   const history = useHistory()
   const { user, singInWithGoogle } = useAuth()

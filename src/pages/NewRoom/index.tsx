@@ -3,18 +3,18 @@ import { FormEvent, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 
 //Componentes externos
-import { database } from '../services/firebase';
-import { useAuth } from '../hooks/useAuth';
-import { Button } from '../components/Button';
+import { database } from '../../services/firebase';
+import { useAuth } from '../../hooks/useAuth';
+import { Button } from '../../components/Button';
 
 //Imagens
-import illustrationsImg from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg';
+import illustrationsImg from '../../assets/images/illustration.svg';
+import logoImg from '../../assets/images/logo.svg';
 
 //CSS
-import '../styles/auth.scss';
+import '../../styles/auth.scss';
 
-//Componente
+//Page
 export function NewRoom() {
   const { user } = useAuth();
   const [newRoom, setNewRoom] = useState('')
