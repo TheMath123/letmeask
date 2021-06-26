@@ -48,7 +48,7 @@ Este é um projeto desenvolvido durante a **[Next Level Week Together](https://n
 
 Você pode visualizar o layout do projeto através do link abaixo:
 
-- [Layout Web](https://www.figma.com/file/u0BQK8rCf2KgzcukdRRCWh/Letmeask/duplicate) 
+- [Layout Web](https://www.figma.com/file/ftpzDsZlycRbQmGXFFbBvN/Letmeask?node-id=0%3A1) 
 
 Lembrando que você precisa ter uma conta no [Figma](http://figma.com/).
 
@@ -58,4 +58,4 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para
 
 ---
 
-Feito com 💜 by Rocketseat 👋🏻 [Participe da nossa comunidade](https://discord.gg/gKUVrzrPrU)
+Feito com :hearts: by Matheus.
